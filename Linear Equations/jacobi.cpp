@@ -61,6 +61,5 @@ void Jacobi() {
 
     cout << "Solution:\n";
     cout << "x = " << e1 << "\ny = " << e2 << "\nz = " << e3 << "\nw = " << e4 << "\nv = " << e5 << endl;
-
-    
+    cout.flush();
 }

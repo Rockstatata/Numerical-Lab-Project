@@ -44,14 +44,12 @@ using namespace std;
         if (fabs(e1 - prev_e1) < tolerance && fabs(e2 - prev_e2) < tolerance && fabs(e3 - prev_e3) < tolerance &&
             fabs(e4 - prev_e4) < tolerance && fabs(e5 - prev_e5) < tolerance) {
             break;
-        }
-
+        }   
         i++;
     }
 cout<<"Total Iteration  "<<i<<endl;
     cout << "Solution:\n";
     cout << "x = " << e1 << "\ny = " << e2 << "\nz = " << e3 << "\nw = " << e4 << "\nv = " << e5 << endl;
-
-    
+    cout.flush();
 }
 

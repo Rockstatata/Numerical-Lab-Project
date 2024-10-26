@@ -137,4 +137,5 @@ void Gauss_jordan(){
     for (int i = 0; i < n; i++) {
         cout << "x" << i + 1 << " = " << values[i] << endl;
     }
+    cout.flush();
 }

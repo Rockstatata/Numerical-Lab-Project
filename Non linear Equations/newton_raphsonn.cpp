@@ -108,3 +108,4 @@ void newton_raphson()
         cout << "Root " << no++ << ": " << a << " " << endl;
     }
 }
+

@@ -21,8 +21,7 @@ void printHeader() {
 }
  
 int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    
     cout<<"Welcome to the Console Application of Numerical Methods"<<endl;
     int choice = 0,quit=0;
     printHeader();
@@ -46,6 +45,7 @@ int main(){
             cout<<"5. LU factorization"<<endl;
             cout<<"6. Back to main menu"<<endl;
             cin>>choicein;
+            cin.ignore(0);
             switch (choicein)
             {
             case 1:
@@ -83,7 +83,7 @@ int main(){
             switch (choicein)
             {
             case 1:
-                bisection_method();
+                bisection();
                 break;
             
             case 2:

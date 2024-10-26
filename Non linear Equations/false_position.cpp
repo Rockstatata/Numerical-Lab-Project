@@ -90,7 +90,6 @@ void print_roots_fp()
 void false_position()
 {
     cout<<setprecision(6)<<fixed;
-
     cout<<"Degree: ";
     cin>>degree_false_p;
 
@@ -104,3 +103,4 @@ void false_position()
     }
     print_roots_fp();
 }
+
