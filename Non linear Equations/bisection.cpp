@@ -86,6 +86,7 @@ void print_root_b()
     for(int i{0} ; i<root_b.size() ; i++){
         cout << "root_b " << i+1 << ": " << root_b[i] << endl;
     }
+    cout.flush();
 }
 
 void bisection()

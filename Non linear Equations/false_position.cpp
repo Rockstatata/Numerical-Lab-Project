@@ -85,6 +85,7 @@ void print_roots_fp()
     for(int i{0} ; i<root_false_p.size() ; i++){
         cout << "root " << i+1 << ": " << root_false_p[i] << endl;
     }
+    cout.flush();
 }
 
 void false_position()

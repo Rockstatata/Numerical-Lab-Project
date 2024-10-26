@@ -109,3 +109,22 @@ void newton_raphson()
     }
 }
 
+int main()
+{
+    cout << setprecision(6) << fixed;
+    input_nr();
+
+    interval_nr = ceil(sqrt(pow((equ_nr[1]/equ_nr[0]), 2)-2*(equ_nr[2]-equ_nr[0])));
+
+    for(int i{interval_nr*(-1)} ; i <= interval_nr ; i++){
+        d_root_nr(i);
+    }
+
+    int no{1};
+    cout << endl;
+    for(auto a : roots_nr){
+        cout << "Root " << no++ << ": " << a << " " << endl;
+    }
+}
+
+
