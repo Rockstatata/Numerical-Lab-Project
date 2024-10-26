@@ -2,7 +2,7 @@
  
 using namespace std;
 
-vector<vector<double>>pivot_zero(vector<vector<double>> matrix){
+vector<vector<double>>pivot_zero_jordan(vector<vector<double>> matrix){
     int size= matrix.size(),col = matrix[0].size();
     int j=size-1;
     set<int>rows;
@@ -18,11 +18,11 @@ vector<vector<double>>pivot_zero(vector<vector<double>> matrix){
     return matrix;
 }
 
-vector<vector<double>> gauss_eli(vector<vector<double>> matrix){
+vector<vector<double>> gauss_eli_jordan(vector<vector<double>> matrix){
     int r = matrix.size();
     int c = matrix[0].size();
     int row = r-1, col = 0;
-    matrix = pivot_zero(matrix);
+    matrix = pivot_zero_jordan(matrix);
     for(int i=0;i<c-2;i++){
         for(int j = row;j>i;j--){
             int k = j-1;
@@ -46,10 +46,10 @@ vector<vector<double>> gauss_eli(vector<vector<double>> matrix){
     return matrix;
 }
 
-vector<vector<double>> jordan_eli(vector<vector<double>> matrix){
+vector<vector<double>> jordan_eli_jordan(vector<vector<double>> matrix){
     int r = matrix.size();
     int c = matrix[0].size();
-    matrix = pivot_zero(matrix);
+    matrix = pivot_zero_jordan(matrix);
     int row = 0, col = 0;
     for(int i=c-2;i>=0;i--){
         for(int j = 0;j<i;j++){
@@ -73,10 +73,10 @@ vector<vector<double>> jordan_eli(vector<vector<double>> matrix){
     }    return matrix;
 }
 
-vector<vector<double>> row_echelon(vector<vector<double>> matrix){
+vector<vector<double>> row_echelon_jordan(vector<vector<double>> matrix){
     int r = matrix.size();
     int c = matrix[0].size();
-    matrix = pivot_zero(matrix);
+    matrix = pivot_zero_jordan(matrix);
     for(int i = 0;i<r;i++){
         double x = (matrix[i][i]);
         if(matrix[i][i]==0.0){
@@ -91,7 +91,7 @@ vector<vector<double>> row_echelon(vector<vector<double>> matrix){
     return matrix;
 }
 
-void display(vector<vector<double>>matrix){
+void display_jordan(vector<vector<double>>matrix){
     int n = matrix.size();
     for(int i = 0;i<n;i++){
         for(int j =0;j<=n;j++){
@@ -103,32 +103,20 @@ void display(vector<vector<double>>matrix){
 
 
 
-void Gauss_jordan(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout<<"Number of equations: "<<endl;
-    int n;
-    cin>>n;
-    vector<vector<double>>matrix(n,vector<double>(n+1));
-    for(int i = 0;i<n;i++){
-        for(int j =0;j<=n;j++){
-            cin>>matrix[i][j];
+vector<double> back_substitution_jordan(vector<vector<double>> matrix) {
+    int n = matrix.size();
+    vector<double> result(n);
+    for (int i = n - 1; i >= 0; i--) {
+        result[i] = matrix[i][n];
+        for (int j = i + 1; j < n; j++) {
+            result[i] -= matrix[i][j] * result[j];
         }
+        result[i] /= matrix[i][i];
     }
-    vector<vector<double>>result = gauss_eli(matrix);
-   // cout<<"Gauss Elimination Output"<<endl;
-  //  display(result);
-    result = jordan_eli(result);
-    cout<<"Jordan Elimination Output"<<endl;
-    display(result);
-    //result = row_echelon(result);
-    //cout<<"Row-echelon Output"<<endl;
-    //display(result);
+    return result;
 }
 
-int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+void Gauss_jordan(){
     cout<<"Number of equations: "<<endl;
     int n;
     cin>>n;
@@ -138,13 +126,15 @@ int main(){
             cin>>matrix[i][j];
         }
     }
-    vector<vector<double>>result = gauss_eli(matrix);
+    vector<vector<double>>result = gauss_eli_jordan(matrix);
    // cout<<"Gauss Elimination Output"<<endl;
-  //  display(result);
-    result = jordan_eli(result);
+  //  display_jordan(result);
+    result = jordan_eli_jordan(result);
     cout<<"Jordan Elimination Output"<<endl;
-    display(result);
-    //result = row_echelon(result);
-    //cout<<"Row-echelon Output"<<endl;
-    //display(result);
+    display_jordan(result);
+    vector<double> values = back_substitution_jordan(result);
+    cout << "Variable values:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "x" << i + 1 << " = " << values[i] << endl;
+    }
 }
